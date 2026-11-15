@@ -1,13 +1,571 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Portfolio | นายศักรินทร์ ขวดแก้ว</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Prompt', sans-serif;
+            background: #f8f6f0;
+            color: #39352f;
+            line-height: 1.8;
+        }
+
+        :root {
+            --cream: #f8f6f0;
+            --white: #fffefa;
+            --brown: #8b7865;
+            --dark: #39352f;
+            --light: #e8e1d6;
+        }
+
+        /* NAVBAR */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 9%;
+            background: rgba(255,254,250,0.95);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #e8e1d6;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--brown);
+            letter-spacing: 2px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 28px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-size: 14px;
+            transition: .3s;
+        }
+
+        nav a:hover {
+            color: var(--brown);
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 70px 10%;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 750px;
+        }
+
+        .hero-label {
+            color: var(--brown);
+            letter-spacing: 4px;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-family: 'Kanit', sans-serif;
+            font-size: clamp(35px, 6vw, 60px);
+            font-weight: 500;
+            line-height: 1.4;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 span {
+            color: var(--brown);
+        }
+
+        .hero p {
+            color: #81796f;
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--brown);
+            color: white;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: .3s;
+        }
+
+        .btn:hover {
+            background: var(--dark);
+            transform: translateY(-3px);
+        }
+
+        .hero-line {
+            width: 60px;
+            height: 3px;
+            background: var(--brown);
+            margin: 30px auto;
+        }
+
+        /* GENERAL SECTION */
+        section {
+            padding: 85px 10%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title small {
+            color: var(--brown);
+            letter-spacing: 3px;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+            font-weight: 500;
+            margin-top: 5px;
+        }
+
+        .section-title div {
+            width: 45px;
+            height: 2px;
+            background: var(--brown);
+            margin: 15px auto;
+        }
+
+        /* ABOUT */
+        #about {
+            background: var(--white);
+        }
+
+        .about-content {
+            max-width: 850px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            gap: 45px;
+            align-items: center;
+        }
+
+        .profile-box {
+            width: 220px;
+            height: 260px;
+            background: #e9e1d5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            color: var(--brown);
+            font-size: 55px;
+            font-weight: 500;
+        }
+
+        .about-text h3 {
+            font-size: 23px;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .about-text p {
+            color: #777067;
+            margin-bottom: 12px;
+        }
+
+        .info {
+            margin-top: 20px;
+        }
+
+        .info p {
+            margin: 8px 0;
+        }
+
+        .info strong {
+            color: var(--brown);
+        }
+
+        /* EDUCATION */
+        #education {
+            background: var(--cream);
+        }
+
+        .timeline {
+            max-width: 750px;
+            margin: auto;
+            border-left: 2px solid #c9b9a6;
+            padding-left: 30px;
+        }
+
+        .timeline-item {
+            position: relative;
+            background: var(--white);
+            padding: 22px 25px;
+            margin-bottom: 25px;
+            border-radius: 6px;
+            box-shadow: 0 4px 15px rgba(0,0,0,.03);
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            width: 13px;
+            height: 13px;
+            background: var(--brown);
+            border-radius: 50%;
+            left: -38px;
+            top: 30px;
+        }
+
+        .timeline-item small {
+            color: var(--brown);
+        }
+
+        .timeline-item h3 {
+            font-size: 19px;
+            font-weight: 500;
+        }
+
+        .timeline-item p {
+            color: #81796f;
+        }
+
+        /* SKILLS */
+        #skills {
+            background: var(--white);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .skill-card {
+            padding: 35px 25px;
+            background: var(--cream);
+            border: 1px solid var(--light);
+            border-radius: 7px;
+            transition: .3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,.05);
+        }
+
+        .skill-card .number {
+            font-size: 30px;
+            color: #b9a48c;
+            margin-bottom: 10px;
+        }
+
+        .skill-card h3 {
+            font-size: 19px;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .skill-card ul {
+            list-style: none;
+            color: #777067;
+        }
+
+        .skill-card li {
+            padding: 5px 0;
+        }
+
+        .skill-card li::before {
+            content: "• ";
+            color: var(--brown);
+        }
+
+        /* CONTACT */
+        #contact {
+            background: #eae4da;
+            text-align: center;
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .contact-content p {
+            color: #777067;
+            margin-bottom: 25px;
+        }
+
+        .facebook {
+            display: inline-block;
+            padding: 12px 28px;
+            background: var(--brown);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: .3s;
+        }
+
+        .facebook:hover {
+            background: var(--dark);
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            background: #39352f;
+            color: #e8e1d6;
+            padding: 25px;
+            font-size: 13px;
+        }
+
+        /* RESPONSIVE */
+        @media(max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 12px;
+                padding: 15px;
+            }
+
+            nav ul {
+                gap: 12px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            nav a {
+                font-size: 12px;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                justify-items: center;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 65px 7%;
+            }
+
+            .hero {
+                min-height: 75vh;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <h1> nickaeiei jaa </h1>
-    <h2>hello , world!</h2>
-    <h3>love jub</h3>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="logo">PORTFOLIO.</div>
+
+        <ul>
+            <li><a href="#home">หน้าแรก</a></li>
+            <li><a href="#about">เกี่ยวกับฉัน</a></li>
+            <li><a href="#education">การศึกษา</a></li>
+            <li><a href="#skills">ทักษะ</a></li>
+            <li><a href="#contact">ติดต่อ</a></li>
+        </ul>
+    </nav>
+
+    <!-- HOME -->
+    <header class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-label">WELCOME TO MY PORTFOLIO</div>
+
+            <h1>
+                นาย<span>ศักรินทร์</span><br>
+                ขวดแก้ว
+            </h1>
+
+            <div class="hero-line"></div>
+
+            <p>
+                นักศึกษา | ผู้สนใจด้านเทคโนโลยี
+                การวิเคราะห์ข้อมูล และการเขียนโปรแกรม
+            </p>
+
+            <a href="#about" class="btn">ทำความรู้จักกับฉัน</a>
+        </div>
+    </header>
+
+    <!-- ABOUT -->
+    <section id="about">
+        <div class="section-title">
+            <small>INTRODUCTION</small>
+            <h2>เกี่ยวกับฉัน</h2>
+            <div></div>
+        </div>
+
+        <div class="about-content">
+
+            <div class="profile-box">
+                SK
+            </div>
+
+            <div class="about-text">
+                <h3>สวัสดีครับ ผมศักรินทร์ ขวดแก้ว</h3>
+
+                <p>
+                    ผมเป็นนักศึกษาที่มีความสนใจในด้านเทคโนโลยี
+                    การจัดการข้อมูล และการเขียนโปรแกรม
+                    มีความตั้งใจในการเรียนรู้และพัฒนาทักษะใหม่ ๆ
+                    เพื่อนำความรู้ไปประยุกต์ใช้ในการศึกษา
+                    และการทำงานในอนาคต
+                </p>
+
+                <div class="info">
+                    <p><strong>ชื่อ-นามสกุล :</strong>
+                        นายศักรินทร์ ขวดแก้ว</p>
+
+                    <p><strong>สถานะ :</strong> นักศึกษา</p>
+
+                    <p><strong>ความสนใจ :</strong>
+                        Data Analysis, Programming, Technology</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education">
+        <div class="section-title">
+            <small>MY BACKGROUND</small>
+            <h2>ประวัติการศึกษา</h2>
+            <div></div>
+        </div>
+
+        <div class="timeline">
+
+            <div class="timeline-item">
+                <small>ระดับปริญญาตรี</small>
+                <h3>มหาวิทยาลัยพะเยา</h3>
+                <p>University of Phayao</p>
+            </div>
+
+            <div class="timeline-item">
+                <small>ระดับมัธยมศึกษาตอนปลาย</small>
+                <h3>โรงเรียนพิริยาลัยจังหวัดแพร่</h3>
+                <p>Phiriyalai School, Phrae</p>
+            </div>
+
+            <div class="timeline-item">
+                <small>ระดับมัธยมศึกษาตอนต้น</small>
+                <h3>โรงเรียนพิริยาลัยจังหวัดแพร่</h3>
+                <p>Phiriyalai School, Phrae</p>
+            </div>
+
+            <div class="timeline-item">
+                <small>ระดับประถมศึกษา</small>
+                <h3>โรงเรียนวัดเมธังกราวาส</h3>
+                <p>จังหวัดแพร่</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+        <div class="section-title">
+            <small>WHAT I CAN DO</small>
+            <h2>ทักษะและความสามารถ</h2>
+            <div></div>
+        </div>
+
+        <div class="skills-grid">
+
+            <div class="skill-card">
+                <div class="number">01</div>
+                <h3>โปรแกรมสำนักงาน</h3>
+                <ul>
+                    <li>Microsoft Excel</li>
+                    <li>Microsoft Word</li>
+                    <li>Microsoft PowerPoint</li>
+                </ul>
+            </div>
+
+            <div class="skill-card">
+                <div class="number">02</div>
+                <h3>การวิเคราะห์และแสดงข้อมูล</h3>
+                <ul>
+                    <li>Power BI</li>
+                </ul>
+            </div>
+
+            <div class="skill-card">
+                <div class="number">03</div>
+                <h3>การเขียนโปรแกรม</h3>
+                <ul>
+                    <li>R Programming</li>
+                    <li>Python</li>
+                    <li>HTML</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <div class="section-title">
+            <small>GET IN TOUCH</small>
+            <h2>ช่องทางการติดต่อ</h2>
+            <div></div>
+        </div>
+
+        <div class="contact-content">
+
+            <p>
+                ขอบคุณที่เข้ามาเยี่ยมชม Portfolio ของผม
+                สามารถติดต่อหรือพูดคุยเพิ่มเติมได้ผ่านช่องทางด้านล่าง
+            </p>
+
+            <a
+                href="https://www.facebook.com/Sakkarin.Dew"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="facebook">
+                Facebook : Sakkarin Dew
+            </a>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 Sakkarin Khodkaew | MY PORTFOLIO</p>
+        <p>Designed with simplicity and creativity.</p>
+    </footer>
+
 </body>
 </html>
